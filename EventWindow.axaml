@@ -1,0 +1,43 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:CompileBindings="False"
+        x:Class="diplom.EventWindow"
+        Title="EventWindow">
+        <DockPanel>
+                <Border DockPanel.Dock="Top" BorderBrush="Aquamarine" BorderThickness="3">
+                        <StackPanel Orientation="Horizontal" >
+                                <Button Content="Вернуться" HorizontalAlignment="Left" Margin="5" Click="BackButtonClick"/>
+                                <TextBox Name="SearchTextBox" TextChanged="SearchTextBox_OnTextChanged" Width="150" Height="50"  Margin="5"/>
+                                <ComboBox Name="SortComboBox" SelectionChanged="SortComboBox_OnSelectionChanged" Margin="5"/>
+                        </StackPanel>
+                </Border>
+                <Border BorderBrush="Aquamarine" BorderThickness="3" DockPanel.Dock="Bottom">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <Button Content="Редактировать" Click="EditButton_OnClick" IsVisible="False" Margin="5" Name="EditButton"/>
+                                <Button Content="Удалить" Click="DeleteButton_OnClick" IsVisible="False" Margin="5" Name="DeleteButton"/>
+                                <Button Content="Добавить" Click="AddButton_OnClick" Margin="5" Name="AddButton"/>
+                        </StackPanel>
+                </Border>
+                <Border BorderBrush="Aqua" BorderThickness="3" DockPanel.Dock="Left">
+                        <ListBox Name="EventListBox" SelectionChanged="EventListBox_OnSelectionChanged">
+                                <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                                <DockPanel>
+                                                        <Border BorderBrush="Aqua" BorderThickness="3">
+                                                                <StackPanel HorizontalAlignment="Center">
+                                                                        <TextBlock Text="{Binding EventEquip}"/>
+                                                                        <TextBlock Text="{Binding EventDateOf}"/>
+                                                                        <TextBlock Text="{Binding EventDescription }"/>
+                                                                        <TextBlock Text="{Binding EventStatus}"/>
+                                                                </StackPanel>
+                                                        </Border>
+                                                </DockPanel>
+                                        </DataTemplate>
+                                </ListBox.ItemTemplate>
+                        </ListBox>
+                </Border>
+        </DockPanel>
+</Window>

@@ -1,0 +1,45 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        x:CompileBindings="False"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="diplom.EquipmentWindow"
+        Title="EquipmentWindow">
+        <DockPanel>
+                <Border BorderBrush="Aquamarine" BorderThickness="3" DockPanel.Dock="Top">
+                        <StackPanel Orientation="Horizontal" >
+                                <Button Content="Вернуться" HorizontalAlignment="Left" Margin="15" Click="BackButtonClick"/>
+                                <TextBox TextChanged="SearchTextBox_OnTextChanged" Name="SearchTextBox" Width="150" Height="50"  HorizontalAlignment="Center" />
+                                <TextBlock Name="EquipCountTextBlock" HorizontalAlignment="Right" Margin="0,10,10,0"/>
+                        </StackPanel>
+                </Border>
+                <Border DockPanel.Dock="Bottom" BorderBrush="Aquamarine" BorderThickness="3">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <Button Click="DeleteButtonClick" Content="Удалить" Margin="5" IsVisible="False" Name="DeleteButton"/>
+                                <Button Click="EditButtonClick" Content="Редактировать" Margin="5" IsVisible="False"  Name="EditButton"/>
+                                <Button Click="AddButtonClick" Content="Добавить" Margin="5" IsVisible="False" Name="AddButton"/>
+                                <Button Click="EventButtonClick" Content="Посмотреть мероприятия" Margin="5" IsVisible="False" Name="EventButton"/>
+                        </StackPanel>
+                </Border>
+                <Border DockPanel.Dock="Left" BorderBrush="Aqua" BorderThickness="3">
+                        <ListBox Name="EquipListBox" SelectionChanged="EquipListBox_OnSelectionChanged">
+                                <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                                <DockPanel>
+                                                        <Border >
+                                                                <StackPanel HorizontalAlignment="Center">
+                                                                        <TextBlock Text="{Binding EquipName}"/>
+                                                                        <TextBlock Text="{Binding EquipStatus}"/>
+                                                                        <TextBlock Text="{Binding EquipDateOfLastCheck}"/>
+                                                                        <TextBlock Text="{Binding EquipPlace}"/>
+                                                                </StackPanel>
+                                                        </Border>
+                                                </DockPanel>
+                                        </DataTemplate>
+                                </ListBox.ItemTemplate>
+                        </ListBox>
+                </Border>
+                
+        </DockPanel>
+</Window>

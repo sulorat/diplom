@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AvaloniaProject">
+    <option name="projectPerEditor">
+      <map>
+        <entry key="AddOrEditEventWindow.axaml" value="diplom.csproj" />
+        <entry key="AddOrEditWindow.axaml" value="diplom.csproj" />
+        <entry key="EquipmentWindow.axaml" value="diplom.csproj" />
+        <entry key="EventWindow.axaml" value="diplom.csproj" />
+        <entry key="MainWindow.axaml" value="diplom.csproj" />
+      </map>
+    </option>
+  </component>
+</project>
