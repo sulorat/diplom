@@ -31,6 +31,7 @@
                                         <Button Margin="0,5,5,0" Name="SaveButton" Content="Сохранить" Click="SaveButton_OnClick"/>
                                         <Button Margin="5,5,0,0" Name="BackButton" Content="Назад"  Click="BackButton_OnClick"/>
                                 </StackPanel>
+                                <TextBlock Name="ErrorTextBlock" Margin="20,0,0,0"/>
                         </StackPanel>
                 </StackPanel>
         </Border>

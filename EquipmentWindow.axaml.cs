@@ -20,15 +20,19 @@ public partial class EquipmentWindow : Window
         public Bitmap? ImagePath { get; set; }
         public string EquipName
         {
-            get => this.Name;
+            get => string.Format("Название: {0}",Name);
         }
         public DateOnly? EquipDateOfLastCheck
         {
             get => Dateoflastcheck;
         }
+        public string  EquipDateOfLastCheckString
+        {
+            get => string.Format("Дата последней проверки: {0}", Dateoflastcheck);
+        }
         public string EquipPlace
         {
-            get => this.Place;
+            get => string.Format("Местоположение: {0}", Place);
         }
         public string EquipStatus
         {
@@ -122,7 +126,7 @@ public partial class EquipmentWindow : Window
         var result = await addWindow.ShowDialog<EquipmentPresenter>(this);
         if (result != null)
         {
-            _equipments.Add(result);
+            
             await using (var dbcontext = new DiplomContext())
             {
                 var equipment = new Equipment()
@@ -132,8 +136,10 @@ public partial class EquipmentWindow : Window
                     StatusId = result.StatusId,
                     Dateoflastcheck =  result.Dateoflastcheck,
                 };
+                result.Status = dbcontext.Statuses.FirstOrDefault(s => s.Id == result.StatusId);
                 dbcontext.Equipments.Add(equipment);
                 dbcontext.SaveChanges();
+                _equipments.Add(result);
             }
         }
         DisplayEquip();
@@ -162,7 +168,7 @@ public partial class EquipmentWindow : Window
                     equipment.Place = result.Place;
                     equipment.StatusId = result.StatusId;
                     equipment.Dateoflastcheck = result.Dateoflastcheck;
-                    
+                    _selectedItem.Status = dbcontext.Statuses.FirstOrDefault(s => s.Id == result.StatusId);
                     dbcontext.SaveChanges();
                 }
             }

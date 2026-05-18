@@ -16,6 +16,7 @@ public partial class MainWindow : Window
         if (LogTextBox.Text == "admin" && PassTextBox.Text == "admin")
         {
             new EquipmentWindow(1).Show();    
+            Hide();
         }
         else
         {
@@ -23,7 +24,6 @@ public partial class MainWindow : Window
             await Task.Delay(3000);
             ErrorTextBlock.Text = "";
         }
-        Hide();
     }
 
     private void GuestButtonClick(object? sender, RoutedEventArgs e)

@@ -10,8 +10,7 @@
                 <Border DockPanel.Dock="Top" BorderBrush="Aquamarine" BorderThickness="3">
                         <StackPanel Orientation="Horizontal" >
                                 <Button Content="Вернуться" HorizontalAlignment="Left" Margin="5" Click="BackButtonClick"/>
-                                <TextBox Name="SearchTextBox" TextChanged="SearchTextBox_OnTextChanged" Width="150" Height="50"  Margin="5"/>
-                                <ComboBox Name="SortComboBox" SelectionChanged="SortComboBox_OnSelectionChanged" Margin="5"/>
+                                <TextBox Name="SearchTextBox" TextChanged="SearchTextBox_OnTextChanged" Width="150" Height="50"  Margin="10"/>
                         </StackPanel>
                 </Border>
                 <Border BorderBrush="Aquamarine" BorderThickness="3" DockPanel.Dock="Bottom">
@@ -29,7 +28,7 @@
                                                         <Border BorderBrush="Aqua" BorderThickness="3">
                                                                 <StackPanel HorizontalAlignment="Center">
                                                                         <TextBlock Text="{Binding EventEquip}"/>
-                                                                        <TextBlock Text="{Binding EventDateOf}"/>
+                                                                        <TextBlock Text="{Binding EventDateOfString}"/>
                                                                         <TextBlock Text="{Binding EventDescription }"/>
                                                                         <TextBlock Text="{Binding EventStatus}"/>
                                                                 </StackPanel>

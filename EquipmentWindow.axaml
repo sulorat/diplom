@@ -31,7 +31,7 @@
                                                                 <StackPanel HorizontalAlignment="Center">
                                                                         <TextBlock Text="{Binding EquipName}"/>
                                                                         <TextBlock Text="{Binding EquipStatus}"/>
-                                                                        <TextBlock Text="{Binding EquipDateOfLastCheck}"/>
+                                                                        <TextBlock Text="{Binding EquipDateOfLastCheckString}"/>
                                                                         <TextBlock Text="{Binding EquipPlace}"/>
                                                                 </StackPanel>
                                                         </Border>

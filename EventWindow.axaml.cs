@@ -17,7 +17,7 @@ public partial class EventWindow : Window
     {
         public string EventEquip
         {
-            get => this.Equipment.Name;
+            get => string.Format("Оборудование: {0}",Equipment?.Name ?? "");
         }
         public int EventId
         {
@@ -27,19 +27,22 @@ public partial class EventWindow : Window
         {
             get => Dateof;
         }
+        public string EventDateOfString
+        {
+            get => string.Format("Дата проведения: {0}", Dateof);
+        }
         public string EventDescription
         {
-            get => Description;
+            get => string.Format("Описание проблемы: {0}", Description);
         }
         public string? EventStatus
         {
-            get => Eventstatus.Name;
+            get => string.Format("Статус: {0}",Eventstatus.Name);
         }
     }
     private List<EventPresenter> _events { get; set; }
     private ObservableCollection< EventPresenter> _displayEvents { get; set; }
     private string _searchWord;
-    private string?[] sortValues;
     private EventPresenter _selectedItem;
     private int sortIndex;
     public EventWindow()
@@ -56,14 +59,14 @@ public partial class EventWindow : Window
                     Eventstatus = e.Eventstatus,
                     Dateof = e.Dateof,
                     Id = e.Id,
+                    Equipment = e.Equipment,
+                    
                     EquipmentId = e.EquipmentId,
                     Description = e.Description,
                     EventstatusId = e.EventstatusId
                 }).ToList();
-            sortValues = dbcontext.Eventstatuses.Select(e => e.Name).ToArray();
         }
         
-        SortComboBox.ItemsSource = sortValues;
         _displayEvents = new ObservableCollection<EventPresenter>(_events);
         EventListBox.ItemsSource = _displayEvents;
 
@@ -135,23 +138,50 @@ public partial class EventWindow : Window
     {
         var EditWin = new AddOrEditEventWindow(_selectedItem);
         var result = await EditWin.ShowDialog<EventPresenter>(this);
-        
-        _selectedItem.Description = result.Description;
-        _selectedItem.EquipmentId = result.EquipmentId;
-        _selectedItem.EventstatusId = result.EventstatusId;
-        _selectedItem.Dateof = result.Dateof;
-        
-        using (var dbcontext = new DiplomContext())
+        if (result != null)
         {
-            var _event = dbcontext.Events.FirstOrDefault(e => e.Id == _selectedItem.Id);
-            if (_event != null)
+            _selectedItem.Description = result.Description;
+            _selectedItem.EquipmentId = result.EquipmentId;
+            _selectedItem.EventstatusId = result.EventstatusId;
+            _selectedItem.Dateof = result.Dateof;
+            
+            await using (var dbcontext = new DiplomContext())
             {
-                _event.Description = result.Description;
-                _event.EquipmentId = result.EquipmentId;
-                _event.EventstatusId = result.EventstatusId;
-                _event.Dateof = result.Dateof;
-                
-                dbcontext.SaveChanges();
+                var _event = dbcontext.Events.FirstOrDefault(e => e.Id == _selectedItem.Id);
+                if (_event != null)
+                {
+                    _event.Description = result.Description;
+                    _event.EquipmentId = result.EquipmentId;
+                    _event.EventstatusId = result.EventstatusId;
+                    _event.Dateof = result.Dateof;
+                    _selectedItem.Eventstatus =
+                        dbcontext.Eventstatuses.FirstOrDefault(es => es.Id == result.EventstatusId);
+                    _selectedItem.Equipment = dbcontext.Equipments.FirstOrDefault(e => e.Id == result.EquipmentId);
+                    switch (result.EventstatusId)
+                    {
+                        case 1:
+                        {
+                            var equipment = dbcontext.Equipments.FirstOrDefault(eq => eq.Id == result.EquipmentId);
+                            if (equipment != null)
+                            {
+                                equipment.Dateoflastcheck = DateOnly.FromDateTime(DateTime.Now);
+                                _events.Remove(_selectedItem);
+                                dbcontext.Events.Remove(_event);
+                                dbcontext.SaveChanges();
+                            }
+
+                            break;
+                        }
+                        case 3:
+                            _events.Remove(_selectedItem);
+                            dbcontext.Events.Remove(_event);
+                            dbcontext.SaveChanges();
+                            break;
+                        case 2:
+                            dbcontext.SaveChanges();
+                            break;
+                    }
+                }
             }
         }
         DipsplayEvents();
@@ -174,18 +204,42 @@ public partial class EventWindow : Window
     {
         var addWin = new AddOrEditEventWindow();
         var result = await addWin.ShowDialog<EventPresenter>(this);
-        _events.Add(result);
-        using (var dbcontext = new DiplomContext())
+        if (result != null)
         {
-            var _event = new Event
+            
+            await using (var dbcontext = new DiplomContext())
             {
-                Description = result.Description,
-                EventstatusId = result.EventstatusId,
-                Dateof = result.Dateof,
-                EquipmentId = result.EquipmentId
-            };
-            dbcontext.Events.Add(_event);
-            dbcontext.SaveChanges();
+                var _event = new Event()
+                {
+                    Description = result.Description,
+                    EventstatusId = result.EventstatusId,
+                    Dateof = result.Dateof,
+                    EquipmentId = result.EquipmentId
+                };
+                result.Equipment = dbcontext.Equipments
+                    .First(ev => ev.Id == result.EquipmentId);
+                result.Eventstatus = dbcontext.Eventstatuses
+                    .First(s => s.Id == result.EventstatusId);
+                if (result.EventstatusId == 1)
+                {
+                    var equipment = dbcontext.Equipments.FirstOrDefault(eq => eq.Id == result.EquipmentId);
+                    if (equipment != null)
+                    {
+                        equipment.Dateoflastcheck = DateOnly.FromDateTime(DateTime.Now);
+                        dbcontext.SaveChanges();
+                    }
+                }
+                else if (result.EventstatusId == 3)
+                {
+                    return;
+                }
+                else
+                {
+                    dbcontext.Events.Add(_event);
+                    dbcontext.SaveChanges();
+                    _events.Add(result);
+                }
+            }
         }
         DipsplayEvents();
     }

@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
@@ -18,8 +19,8 @@ public partial class AddOrEditWindow : Window
         
         using (var dbcontext = new DiplomContext())
         {
-            var statusNames = dbcontext.Statuses.Select(s => s.Name).ToList();
-            StatusComboBox.ItemsSource = statusNames;
+            var statusNames = dbcontext.Statuses.ToList();
+            StatusComboBox.ItemsSource = statusNames.Select(s=>s.Name);
         }
     }
     public AddOrEditWindow(EquipmentWindow.EquipmentPresenter equip)
@@ -28,10 +29,10 @@ public partial class AddOrEditWindow : Window
         _equip = equip;
         TitleTextBlock.Text = "Окно редактирования";
         using (var dbcontext = new DiplomContext())
-            
+
         {
-            var statusNames = dbcontext.Statuses.Select(s => s.Name).ToList();
-            StatusComboBox.ItemsSource = statusNames;
+            var statusNames = dbcontext.Statuses.ToList();
+            StatusComboBox.ItemsSource = statusNames.Select(s=>s.Name);
         }
 
         NameTextBox.Text = _equip.Name;
@@ -41,11 +42,26 @@ public partial class AddOrEditWindow : Window
 
     }
 
-    private void SaveButton_OnClick(object? sender, RoutedEventArgs e)
+    private async void SaveButton_OnClick(object? sender, RoutedEventArgs e)
     {
+        if (NameTextBox.Text == null || PlaceTextBox.Text == null || LastDatePicker.SelectedDate == null ||
+            StatusComboBox.SelectedItem == null)
+        {
+            ErrorTextBlock.Text = "Заполните все поля";
+            await Task.Delay(4000);
+            ErrorTextBlock.Text = "";
+            return;
+        }
         _equip.Name = NameTextBox.Text;
         _equip.Place = PlaceTextBox.Text;
         _equip.Dateoflastcheck = DateOnly.FromDateTime(LastDatePicker.SelectedDate.Value.DateTime);
+        if (_equip.Dateoflastcheck > DateOnly.FromDateTime(DateTime.Now))
+        {
+            ErrorTextBlock.Text = "Нельзя обозначить будущую проверку";
+            await Task.Delay(4000);
+            ErrorTextBlock.Text = "";
+            return;
+        }
         _equip.StatusId = StatusComboBox.SelectedIndex + 1;
         Close(_equip);
     }
