@@ -1,0 +1,39 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:CompileBindings="False"
+        x:Class="diplom.HistoryEquipWindow"
+        Title="HistoryEquipWindow">
+    <DockPanel>
+        <Border DockPanel.Dock="Top">
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Вернуться" Margin="15" Name="BackButton" Click="BackButton_OnClick"/>
+                <TextBlock Text="Окно Истории оборудования" Margin="50,10,0,0"/>
+            </StackPanel>
+        </Border>
+        <Border>
+            <ListBox Name="HistoryListBox">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Image/>
+                            <StackPanel >
+                                <TextBlock Margin="5" Text="{Binding EquipName}" />
+                                <TextBlock Margin="5" Text="{Binding EquipWorkHours}"/>
+                                <TextBlock Margin="5" Text="{Binding EquipCapasity}"/>
+                            </StackPanel>
+                            <StackPanel >
+                                <TextBlock  Margin="5" Text="{Binding EquipDateOfLastCheck}"/>
+                                <TextBlock  Margin="5" Text="{Binding EquipDateOfLastCheckString}"/>
+                                <TextBlock  Margin="5" Text="{Binding EquipPlace}"/>
+                            </StackPanel >
+                            <TextBlock Text="{Binding EquipStatus}" Margin="5" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Border>
+    </DockPanel>
+</Window>

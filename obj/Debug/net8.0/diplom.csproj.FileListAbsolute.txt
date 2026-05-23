@@ -179,3 +179,8 @@ D:\RiderProjects\diplom\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.Workspaces.re
 D:\RiderProjects\diplom\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 D:\RiderProjects\diplom\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
 D:\RiderProjects\diplom\obj\Debug\net8.0\diplom.sourcelink.json
+D:\RiderProjects\diplom\bin\Debug\net8.0\ColorTextBlock.Avalonia.dll
+D:\RiderProjects\diplom\bin\Debug\net8.0\DialogHost.Avalonia.dll
+D:\RiderProjects\diplom\bin\Debug\net8.0\Markdown.Avalonia.dll
+D:\RiderProjects\diplom\bin\Debug\net8.0\MsBox.Avalonia.dll
+D:\RiderProjects\diplom\bin\Debug\net8.0\System.Reactive.dll

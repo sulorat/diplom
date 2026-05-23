@@ -5,9 +5,14 @@
       <map>
         <entry key="AddOrEditEventWindow.axaml" value="diplom.csproj" />
         <entry key="AddOrEditWindow.axaml" value="diplom.csproj" />
+        <entry key="AddRequestsWindow.axaml" value="diplom.csproj" />
         <entry key="EquipmentWindow.axaml" value="diplom.csproj" />
         <entry key="EventWindow.axaml" value="diplom.csproj" />
+        <entry key="HistoryEquipWindow.axaml" value="diplom.csproj" />
+        <entry key="HistoryMovementWindow.axaml" value="diplom.csproj" />
         <entry key="MainWindow.axaml" value="diplom.csproj" />
+        <entry key="MovementWindow.axaml" value="diplom.csproj" />
+        <entry key="RepairRequestWindow.axaml" value="diplom.csproj" />
       </map>
     </option>
   </component>

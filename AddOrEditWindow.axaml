@@ -19,6 +19,14 @@
                                         <TextBox Name="PlaceTextBox" Margin="5,5,0,5"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0,10">
+                                        <TextBlock Text="Сколько уже проработал" Margin="0,5,5,5"/>
+                                        <TextBox Name="WorkTextBox" Margin="5,5,0,5"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0,10">
+                                        <TextBlock Text="Максимальная производительность в часах" Margin="0,5,5,5"/>
+                                        <TextBox Name="CapasityTextBox" Margin="5,5,0,5"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0,10">
                                         <TextBlock Text="Состояние" Margin="0,5,5,5"/>
                                         <ComboBox Name="StatusComboBox"/>
                                 </StackPanel>
@@ -30,6 +38,7 @@
                                 <StackPanel Orientation="Horizontal" Margin="0,10" HorizontalAlignment="Center">
                                         <Button Margin="0,5,5,0" Name="SaveButton" Content="Сохранить" Click="SaveButton_OnClick"/>
                                         <Button Margin="5,5,0,0" Name="BackButton" Content="Назад"  Click="BackButton_OnClick"/>
+                                        <Button Margin="5,5,0,0" Name="ChangeImage" Content="Изменить фотографию"  Click="SelectImageButton_Click"/>
                                 </StackPanel>
                                 <TextBlock Name="ErrorTextBlock" Margin="20,0,0,0"/>
                         </StackPanel>

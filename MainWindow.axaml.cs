@@ -1,6 +1,8 @@
 using System.Threading.Tasks;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
+using MsBox.Avalonia;
+using MsBox.Avalonia.Enums;
 
 namespace diplom;
 
@@ -20,9 +22,9 @@ public partial class MainWindow : Window
         }
         else
         {
-            ErrorTextBlock.Text = "Неправильный пароль или логин";
-            await Task.Delay(3000);
-            ErrorTextBlock.Text = "";
+            var messageBoxStandardWindow = MessageBoxManager
+                .GetMessageBoxStandard("Ошибка", "Неправильный пароль или логин",ButtonEnum.Ok);
+            await messageBoxStandardWindow.ShowAsync();
         }
     }
 

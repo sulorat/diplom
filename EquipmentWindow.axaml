@@ -10,8 +10,10 @@
                 <Border BorderBrush="Aquamarine" BorderThickness="3" DockPanel.Dock="Top">
                         <StackPanel Orientation="Horizontal" >
                                 <Button Content="Вернуться" HorizontalAlignment="Left" Margin="15" Click="BackButtonClick"/>
-                                <TextBox TextChanged="SearchTextBox_OnTextChanged" Name="SearchTextBox" Width="150" Height="50"  HorizontalAlignment="Center" />
+                                <TextBox Margin="10" TextChanged="SearchTextBox_OnTextChanged" Name="SearchTextBox" Width="150" Height="50"  HorizontalAlignment="Center" />
+                                <ComboBox IsVisible="False" Name="SortComboBox" SelectionChanged="SortComboBox_OnSelectionChanged" Margin="10"/>
                                 <TextBlock Name="EquipCountTextBlock" HorizontalAlignment="Right" Margin="0,10,10,0"/>
+                                <TextBlock Name="WarningTextBlock"/>
                         </StackPanel>
                 </Border>
                 <Border DockPanel.Dock="Bottom" BorderBrush="Aquamarine" BorderThickness="3">
@@ -20,22 +22,30 @@
                                 <Button Click="EditButtonClick" Content="Редактировать" Margin="5" IsVisible="False"  Name="EditButton"/>
                                 <Button Click="AddButtonClick" Content="Добавить" Margin="5" IsVisible="False" Name="AddButton"/>
                                 <Button Click="EventButtonClick" Content="Посмотреть мероприятия" Margin="5" IsVisible="False" Name="EventButton"/>
+                                <Button Name="HistoryButton" Click="HistoryButton_OnClick" Content="История оборудования" Margin="5" IsVisible="False"/>
+                                <Button Name="MoveButton" Click="MoveButton_OnClick" Content="Перемещение оборудования" Margin="5" IsVisible="False"/>
+                                <Button Name="RequestButton" Click="RequestButton_OnClick" Content="Создание запроса" Margin="5" />
                         </StackPanel>
                 </Border>
                 <Border DockPanel.Dock="Left" BorderBrush="Aqua" BorderThickness="3">
                         <ListBox Name="EquipListBox" SelectionChanged="EquipListBox_OnSelectionChanged">
                                 <ListBox.ItemTemplate>
                                         <DataTemplate>
-                                                <DockPanel>
-                                                        <Border >
+                                                <Border Background="{Binding EquipColor}" BorderBrush="Gold" BorderThickness="3">
+                                                        <StackPanel Orientation="Horizontal">
+                                                                <Image Width="150" Height="100" Source="{Binding Image}"/>
                                                                 <StackPanel HorizontalAlignment="Center">
                                                                         <TextBlock Text="{Binding EquipName}"/>
                                                                         <TextBlock Text="{Binding EquipStatus}"/>
                                                                         <TextBlock Text="{Binding EquipDateOfLastCheckString}"/>
                                                                         <TextBlock Text="{Binding EquipPlace}"/>
                                                                 </StackPanel>
-                                                        </Border>
-                                                </DockPanel>
+                                                                <StackPanel>
+                                                                        <TextBlock Text="{Binding EquipWorkHours}"/>
+                                                                        <TextBlock Text="{Binding EquipCapasity}"/>
+                                                                </StackPanel>
+                                                        </StackPanel>
+                                                </Border>
                                         </DataTemplate>
                                 </ListBox.ItemTemplate>
                         </ListBox>

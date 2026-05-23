@@ -52,8 +52,8 @@ public partial class AddOrEditEventWindow : Window
     
     private async void SaveButton_OnClick(object? sender, RoutedEventArgs e)
     {
-        if (DescriptionTextBox.Text == null || DateCheckPicker == null ||
-            StatusComboBox.SelectedItem == null || EquipComboBox == null)
+        if (DescriptionTextBox.Text == null || DateCheckPicker == null||
+            StatusComboBox.SelectedItem == null ||EquipComboBox == null)
         {
             ErrorTextBlock.Text = "Заполните все поля";
             await Task.Delay(4000);

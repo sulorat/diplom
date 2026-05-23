@@ -65,6 +65,12 @@ public partial class EventWindow : Window
                     Description = e.Description,
                     EventstatusId = e.EventstatusId
                 }).ToList();
+
+            var warning = dbcontext.Repairrequests.Where(e=>e.Isdeleted!=true).Any(e => e.Priority == 1);
+            if (warning != null)
+            {
+                WarningTextBlock.Text = "У вас срочная заявка на рассмотрение";
+            }
         }
         
         _displayEvents = new ObservableCollection<EventPresenter>(_events);
@@ -75,7 +81,9 @@ public partial class EventWindow : Window
     private void DipsplayEvents()
     {
         List<EventPresenter> _displayListEvents = new List<EventPresenter>(_events);
-
+        
+        
+        
         if (!string.IsNullOrEmpty(_searchWord))
         {
             _displayListEvents = _displayListEvents.Where(e =>
@@ -242,5 +250,12 @@ public partial class EventWindow : Window
             }
         }
         DipsplayEvents();
+    }
+
+    private void RequestButton_OnClick(object? sender, RoutedEventArgs e)
+    {
+        var win = new RepairRequestWindow();
+        win.Show();
+        Hide();
     }
 }

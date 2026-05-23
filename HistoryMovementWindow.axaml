@@ -1,0 +1,42 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:CompileBindings="False"
+        x:Class="diplom.HistoryMovementWindow"
+        Title="HistoryMovementWindow">
+    <DockPanel>
+        <Border DockPanel.Dock="Top">
+            <StackPanel Orientation="Horizontal">
+                <Button Name="BackButton" Click="BackButton_OnClick" Content="Вернуться"/>
+                <TextBlock Text="Окно истории перемещений" Margin="50,10,0,0"/>
+                <ComboBox Name="SortComboBox" Margin="10" SelectionChanged="SortComboBox_OnSelectionChanged"/>
+            </StackPanel>
+        </Border>
+        <ListBox DockPanel.Dock="Bottom" Name="HistoryListBox">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel>
+                            <TextBlock Text="{Binding MoveEquip}" Margin="5"/>
+                            <TextBlock Text="{Binding MoveType}" Margin="5"/>
+                        </StackPanel>
+                        <StackPanel>
+                            <TextBlock Text="{Binding MoveFromDateString}" Margin="5"/>
+                            <TextBlock Text="{Binding MoveToDateString}" Margin="5"/>
+                        </StackPanel>
+                        <StackPanel>
+                            <TextBlock Text="{Binding MovePerson}" Margin="5"/>
+                            <TextBlock Text="{Binding MoveReason}" Margin="5"/>
+                        </StackPanel>
+                        <StackPanel>
+                            <TextBlock Text="{Binding MoveTo}" Margin="5"/>
+                            <TextBlock Text="{Binding MoveFrom}" Margin="5"/>
+                        </StackPanel>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </DockPanel>
+</Window>

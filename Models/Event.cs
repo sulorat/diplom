@@ -13,6 +13,8 @@ public partial class Event
 
     public string Description { get; set; } = null!;
 
+    public bool? Isdeleted { get; set; }
+
     public int? EventstatusId { get; set; }
 
     public virtual Equipment? Equipment { get; set; }
