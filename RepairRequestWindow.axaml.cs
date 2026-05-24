@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
+using Avalonia.Media.Imaging;
 using diplom.Models;
 
 namespace diplom;
@@ -14,7 +16,23 @@ public partial class RepairRequestWindow : Window
 {
     public class RepairPresenter : Repairrequest
     {
-        public string MRepairEquip
+        public string? ImagePath
+        {
+            get => Equipment.Imagepath;
+        }
+        
+        public Bitmap Image
+        {
+            get
+            {
+                if (string.IsNullOrEmpty( Equipment.Imagepath) || !File.Exists( Equipment.Imagepath))
+                    return null;
+
+                return new Bitmap( Equipment.Imagepath);
+            }
+        }
+
+        public string RepairEquip
         {
             get => string.Format("Название: {0}",Equipment.Name);
         }

@@ -23,7 +23,7 @@ public partial class AddOrEditEventWindow : Window
         using (var dbcontext = new DiplomContext())
         {
             statuses = dbcontext.Eventstatuses.ToList();
-            equipValues = dbcontext.Equipments.ToList();
+            equipValues = dbcontext.Equipments.Where(e=>e.Isdeleted!=true).ToList();
         }
         StatusComboBox.ItemsSource = statuses.Select(s=>s.Description);
         EquipComboBox.ItemsSource = equipValues.Select(e => e.Name);

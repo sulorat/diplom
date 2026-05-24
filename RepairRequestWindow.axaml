@@ -5,37 +5,99 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:CompileBindings="False"
         x:Class="diplom.RepairRequestWindow"
+        Icon="Assets/iconapp.ico"
         Title="RepairRequestWindow">
-        <DockPanel>
-                <Border DockPanel.Dock="Top">
-                        <StackPanel Orientation="Horizontal">
-                                <Button Content="Вернуться" Name="BackButton" Click="BackButton_OnClick"/>
-                                <TextBlock Text="Окно заявок" Margin="50,10,0,0"/>
-                                <ComboBox Name="SortComboBox" Margin="10" SelectionChanged="SortComboBox_OnSelectionChanged"/>
+        <DockPanel Background="#FFF8F0">
+
+    <Border DockPanel.Dock="Top"
+            Background="#FFE4C4"
+            BorderBrush="#E0C3A3"
+            BorderThickness="0,0,0,2">
+
+        <StackPanel Orientation="Horizontal">
+
+            <Button Content="Вернуться"
+                    Name="BackButton"
+                    Click="BackButton_OnClick"
+                    Margin="10"/>
+
+            <TextBlock Text="Окно заявок"
+                       Margin="50,10,0,0"
+                       FontSize="16"
+                       FontWeight="Bold"/>
+
+            <ComboBox Name="SortComboBox"
+                      Margin="20,10,0,0"
+                      SelectionChanged="SortComboBox_OnSelectionChanged"/>
+
+        </StackPanel>
+    </Border>
+
+    <Border DockPanel.Dock="Bottom"
+            Background="#FFE4C4"
+            BorderBrush="#E0C3A3"
+            BorderThickness="2,2,0,0">
+
+        <StackPanel Orientation="Horizontal">
+
+            <Button Name="AddButton"
+                    Margin="10"
+                    Click="AddButton_OnClick"
+                    Content="Одобрить"
+                    IsVisible="False"/>
+
+            <Button Name="DeleteButton"
+                    Content="Удалить"
+                    Click="DeleteButton_OnClick"
+                    Margin="10"
+                    IsVisible="False"/>
+
+        </StackPanel>
+    </Border>
+
+    <ListBox Name="RepairsListBox"
+             DockPanel.Dock="Left"
+             Background="Transparent"
+             BorderThickness="0"
+             SelectionChanged="RepairsListBox_OnSelectionChanged">
+
+        <ListBox.ItemTemplate>
+            <DataTemplate>
+                <Border Background="#FFFDF8"
+                        BorderBrush="#E0C3A3"
+                        BorderThickness="1"
+                        CornerRadius="10"
+                        Margin="10"
+                        Padding="10">
+
+                    <StackPanel Orientation="Horizontal">
+
+                        <Image Width="150"
+                               Height="100"
+                               Source="{Binding Image}"
+                               Margin="5"/>
+
+                        <StackPanel Margin="10,0">
+                            <TextBlock Margin="5" Text="{Binding RepairEquip}" FontWeight="Bold"/>
+                            <TextBlock Margin="5" Text="{Binding RepairDescription}"/>
                         </StackPanel>
-                </Border>
-                <Border DockPanel.Dock="Bottom">
-                        <StackPanel Orientation="Horizontal">
-                                <Button Name="AddButton" Margin="10" Click="AddButton_OnClick" Content="Одобрить" IsVisible="False"/>
-                                <Button Name="DeleteButton" Content="Удалить" Click="DeleteButton_OnClick" Margin="10" IsVisible="False"/>
+
+                        <StackPanel Margin="10,0">
+                            <TextBlock Margin="5" Text="{Binding RepairPriority}"/>
+                            <TextBlock Margin="5" Text="{Binding RepairRequestStatus}"/>
                         </StackPanel>
+
+                        <TextBlock Margin="10"
+                                   VerticalAlignment="Center"
+                                   Text="{Binding RepairCreatedDateString}"/>
+
+                    </StackPanel>
+
                 </Border>
-                <ListBox SelectionChanged="RepairsListBox_OnSelectionChanged" DockPanel.Dock="Left" Name="RepairsListBox">
-                        <ListBox.ItemTemplate>
-                                <DataTemplate>
-                                        <StackPanel Orientation="Horizontal">
-                                                <StackPanel>
-                                                        <TextBlock Margin="5" Text="{Binding RepairEquip}"/>
-                                                        <TextBlock Margin="5" Text="{Binding RepairDescription}"/>
-                                                </StackPanel>
-                                                <StackPanel>
-                                                        <TextBlock Margin="5" Text="{Binding RepairPriority}"/>
-                                                        <TextBlock Margin="5" Text="{Binding RepairRequestStatus}"/>
-                                                </StackPanel>
-                                                <TextBlock Margin="5" Text="{Binding RepairCreatedDateString}"/>
-                                        </StackPanel>
-                                </DataTemplate>
-                        </ListBox.ItemTemplate>
-                </ListBox>
-        </DockPanel>
+            </DataTemplate>
+        </ListBox.ItemTemplate>
+
+    </ListBox>
+
+</DockPanel>
 </Window>

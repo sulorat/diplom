@@ -5,51 +5,98 @@
         x:CompileBindings="False"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="diplom.EquipmentWindow"
+        Icon="Assets/iconapp.ico"
         Title="EquipmentWindow">
-        <DockPanel>
-                <Border BorderBrush="Aquamarine" BorderThickness="3" DockPanel.Dock="Top">
-                        <StackPanel Orientation="Horizontal" >
-                                <Button Content="Вернуться" HorizontalAlignment="Left" Margin="15" Click="BackButtonClick"/>
-                                <TextBox Margin="10" TextChanged="SearchTextBox_OnTextChanged" Name="SearchTextBox" Width="150" Height="50"  HorizontalAlignment="Center" />
-                                <ComboBox IsVisible="False" Name="SortComboBox" SelectionChanged="SortComboBox_OnSelectionChanged" Margin="10"/>
-                                <TextBlock Name="EquipCountTextBlock" HorizontalAlignment="Right" Margin="0,10,10,0"/>
-                                <TextBlock Name="WarningTextBlock"/>
-                        </StackPanel>
-                </Border>
-                <Border DockPanel.Dock="Bottom" BorderBrush="Aquamarine" BorderThickness="3">
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                <Button Click="DeleteButtonClick" Content="Удалить" Margin="5" IsVisible="False" Name="DeleteButton"/>
-                                <Button Click="EditButtonClick" Content="Редактировать" Margin="5" IsVisible="False"  Name="EditButton"/>
-                                <Button Click="AddButtonClick" Content="Добавить" Margin="5" IsVisible="False" Name="AddButton"/>
-                                <Button Click="EventButtonClick" Content="Посмотреть мероприятия" Margin="5" IsVisible="False" Name="EventButton"/>
-                                <Button Name="HistoryButton" Click="HistoryButton_OnClick" Content="История оборудования" Margin="5" IsVisible="False"/>
-                                <Button Name="MoveButton" Click="MoveButton_OnClick" Content="Перемещение оборудования" Margin="5" IsVisible="False"/>
-                                <Button Name="RequestButton" Click="RequestButton_OnClick" Content="Создание запроса" Margin="5" />
-                        </StackPanel>
-                </Border>
-                <Border DockPanel.Dock="Left" BorderBrush="Aqua" BorderThickness="3">
-                        <ListBox Name="EquipListBox" SelectionChanged="EquipListBox_OnSelectionChanged">
-                                <ListBox.ItemTemplate>
-                                        <DataTemplate>
-                                                <Border Background="{Binding EquipColor}" BorderBrush="Gold" BorderThickness="3">
-                                                        <StackPanel Orientation="Horizontal">
-                                                                <Image Width="150" Height="100" Source="{Binding Image}"/>
-                                                                <StackPanel HorizontalAlignment="Center">
-                                                                        <TextBlock Text="{Binding EquipName}"/>
-                                                                        <TextBlock Text="{Binding EquipStatus}"/>
-                                                                        <TextBlock Text="{Binding EquipDateOfLastCheckString}"/>
-                                                                        <TextBlock Text="{Binding EquipPlace}"/>
-                                                                </StackPanel>
-                                                                <StackPanel>
-                                                                        <TextBlock Text="{Binding EquipWorkHours}"/>
-                                                                        <TextBlock Text="{Binding EquipCapasity}"/>
-                                                                </StackPanel>
-                                                        </StackPanel>
-                                                </Border>
-                                        </DataTemplate>
-                                </ListBox.ItemTemplate>
-                        </ListBox>
-                </Border>
-                
-        </DockPanel>
+     <DockPanel Background="#F5F7FA">
+
+    <Border DockPanel.Dock="Top" Background="Bisque" Padding="10" BorderBrush="#E0E0E0" BorderThickness="0,0,0,1">
+        <Grid ColumnDefinitions="Auto,Auto,Auto,*,Auto,Auto" VerticalAlignment="Center">
+
+            <Button Content="← Назад"
+                    Click="BackButtonClick"
+                    Margin="5"
+                    Padding="10,5"/>
+
+            <TextBox Grid.Column="1"
+                     Name="SearchTextBox"
+                     Width="150"
+                     Height="50"
+                     Margin="10"
+                     TextChanged="SearchTextBox_OnTextChanged"/>
+
+            <ComboBox Grid.Column="2"
+                      Name="SortComboBox"
+                      Margin="10"
+                      IsVisible="False"
+                      SelectionChanged="SortComboBox_OnSelectionChanged"/>
+
+            <TextBlock Grid.Column="4"
+                       Name="EquipCountTextBlock"
+                       HorizontalAlignment="Right"
+                       Margin="0,10,10,0"/>
+
+            <TextBlock Grid.Column="5"
+                       Background="Brown"
+                       Name="WarningTextBlock"/>
+        </Grid>
+    </Border>
+
+    <Border DockPanel.Dock="Bottom" Background="Bisque" Padding="10" BorderBrush="#E0E0E0" BorderThickness="1,1,0,0">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+
+            <Button Click="DeleteButtonClick" Content="Удалить" Margin="5" IsVisible="False" Name="DeleteButton"/>
+            <Button Click="EditButtonClick" Content="Редактировать" Margin="5" IsVisible="False" Name="EditButton"/>
+            <Button Click="AddButtonClick" Content="Добавить" Margin="5" IsVisible="False" Name="AddButton"/>
+            <Button Click="EventButtonClick" Content="Посмотреть мероприятия" Margin="5" IsVisible="False" Name="EventButton"/>
+            <Button Name="HistoryButton" Click="HistoryButton_OnClick" Content="История оборудования" Margin="5" IsVisible="False"/>
+            <Button Name="MoveButton" Click="MoveButton_OnClick" Content="Перемещение оборудования" Margin="5" IsVisible="False"/>
+            <Button Name="RequestButton" Click="RequestButton_OnClick" Content="Создание запроса" Margin="5"/>
+
+        </StackPanel>
+    </Border>
+
+    <ScrollViewer>
+        <ListBox Name="EquipListBox"
+                 Background="Transparent"
+                 BorderThickness="0"
+                 SelectionChanged="EquipListBox_OnSelectionChanged">
+
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border Background="White"
+                            CornerRadius="10"
+                            Margin="10"
+                            Padding="10"
+                            BorderBrush="#E0E0E0"
+                            BorderThickness="1">
+
+                        <Grid ColumnDefinitions="150,*,Auto">
+
+                            <Image Width="140"
+                                   Height="100"
+                                   Source="{Binding Image}"
+                                   Stretch="UniformToFill"
+                                   Margin="5"/>
+
+                            <StackPanel Grid.Column="1" Margin="10,0">
+                                <TextBlock Text="{Binding EquipName}" FontSize="16" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding EquipStatus}" Foreground="Gray"/>
+                                <TextBlock Text="{Binding EquipDateOfLastCheckString}" FontSize="12"/>
+                                <TextBlock Text="{Binding EquipPlace}" FontSize="12"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="2" HorizontalAlignment="Right">
+                                <TextBlock Text="{Binding EquipWorkHours}" FontSize="12"/>
+                                <TextBlock Text="{Binding EquipCapasity}" FontSize="12"/>
+                            </StackPanel>
+
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+
+        </ListBox>
+    </ScrollViewer>
+
+</DockPanel>
 </Window>

@@ -5,41 +5,82 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:CompileBindings="False"
         x:Class="diplom.EventWindow"
+        Icon="Assets/iconapp.ico"
         Title="EventWindow">
-        <DockPanel>
-                <Border DockPanel.Dock="Top" BorderBrush="Aquamarine" BorderThickness="3">
-                        <StackPanel Orientation="Horizontal" >
-                                <Button Content="Вернуться" HorizontalAlignment="Left" Margin="5" Click="BackButtonClick"/>
-                                <TextBox Name="SearchTextBox" TextChanged="SearchTextBox_OnTextChanged" Width="150" Height="50"  Margin="10"/>
-                                <TextBlock Text="Окно мероприятий" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                <TextBlock Name="WarningTextBlock" Margin="30,10,0,0" Background="Brown"/>
+        <DockPanel Background="#FFF8F0">
+
+    <Border DockPanel.Dock="Top" Background="#FFE4C4" BorderBrush="#E0C3A3" BorderThickness="0,0,0,2">
+        <StackPanel Orientation="Horizontal">
+            <Button Content="Вернуться" HorizontalAlignment="Left" Margin="5" Click="BackButtonClick"/>
+
+            <TextBox Name="SearchTextBox"
+                     TextChanged="SearchTextBox_OnTextChanged"
+                     Width="150"
+                     Height="50"
+                     Margin="10"
+                     Background="#FFFDF8"/>
+
+            <TextBlock Text="Окно мероприятий"
+                       Margin="10"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       FontSize="16"
+                       FontWeight="Bold"/>
+
+            <TextBlock Name="WarningTextBlock"
+                       Margin="30,10,0,0"
+                       Background="#D98C6B"
+                       Foreground="White"
+                       Padding="5"/>
+        </StackPanel>
+    </Border>
+
+    <Border DockPanel.Dock="Bottom" Background="#FFE4C4" BorderBrush="#E0C3A3" BorderThickness="2,2,0,0">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Content="Редактировать" Click="EditButton_OnClick" IsVisible="False" Margin="5" Name="EditButton"/>
+            <Button Content="Удалить" Click="DeleteButton_OnClick" IsVisible="False" Margin="5" Name="DeleteButton"/>
+            <Button Content="Добавить" Click="AddButton_OnClick" Margin="5" Name="AddButton"/>
+            <Button Content="Запросы" Click="RequestButton_OnClick" Margin="5" Name="RequestButton"/>
+        </StackPanel>
+    </Border>
+
+    <Border DockPanel.Dock="Left" Background="#FFF8F0" BorderBrush="#E0C3A3" BorderThickness="0,0,2,0">
+        <ListBox Name="EventListBox"
+                 Background="Transparent"
+                 BorderThickness="0"
+                 SelectionChanged="EventListBox_OnSelectionChanged">
+
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border Background="#FFFDF8"
+                            BorderBrush="#E0C3A3"
+                            BorderThickness="1"
+                            CornerRadius="10"
+                            Margin="10"
+                            Padding="10">
+
+                        <StackPanel Orientation="Horizontal">
+
+                            <Image Width="150"
+                                   Height="100"
+                                   Source="{Binding Image}"
+                                   Margin="5"/>
+
+                            <StackPanel HorizontalAlignment="Center" Margin="10,0">
+                                <TextBlock Text="{Binding EventEquip}" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding EventDateOfString}"/>
+                                <TextBlock Text="{Binding EventDescription}"/>
+                                <TextBlock Text="{Binding EventStatus}"/>
+                            </StackPanel>
+
                         </StackPanel>
-                </Border>
-                <Border BorderBrush="Aquamarine" BorderThickness="3" DockPanel.Dock="Bottom">
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                <Button Content="Редактировать" Click="EditButton_OnClick" IsVisible="False" Margin="5" Name="EditButton"/>
-                                <Button Content="Удалить" Click="DeleteButton_OnClick" IsVisible="False" Margin="5" Name="DeleteButton"/>
-                                <Button Content="Добавить" Click="AddButton_OnClick" Margin="5" Name="AddButton"/>
-                                <Button Content="Запросы" Click="RequestButton_OnClick" Margin="5" Name="RequestButton"/>
-                        </StackPanel>
-                </Border>
-                <Border BorderBrush="Aqua" BorderThickness="3" DockPanel.Dock="Left">
-                        <ListBox Name="EventListBox" SelectionChanged="EventListBox_OnSelectionChanged">
-                                <ListBox.ItemTemplate>
-                                        <DataTemplate>
-                                                <DockPanel>
-                                                        <Border BorderBrush="Aqua" BorderThickness="3">
-                                                                <StackPanel HorizontalAlignment="Center">
-                                                                        <TextBlock Text="{Binding EventEquip}"/>
-                                                                        <TextBlock Text="{Binding EventDateOfString}"/>
-                                                                        <TextBlock Text="{Binding EventDescription }"/>
-                                                                        <TextBlock Text="{Binding EventStatus}"/>
-                                                                </StackPanel>
-                                                        </Border>
-                                                </DockPanel>
-                                        </DataTemplate>
-                                </ListBox.ItemTemplate>
-                        </ListBox>
-                </Border>
-        </DockPanel>
+
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+
+        </ListBox>
+    </Border>
+
+</DockPanel>
 </Window>

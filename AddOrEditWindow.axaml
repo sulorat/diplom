@@ -5,43 +5,90 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:CompileBindings="False"
         x:Class="diplom.AddOrEditWindow"
+        Icon="Assets/iconapp.ico"
         Title="AddOrEditWindow">
-        <Border BorderBrush="Aquamarine" BorderThickness="5">
-                <StackPanel HorizontalAlignment="Center">
-                        <TextBlock Name="TitleTextBlock" HorizontalAlignment="Center"/>
-                        <StackPanel Margin="0,25" HorizontalAlignment="Center">
-                                <StackPanel Orientation="Horizontal" Margin="0,10">
-                                        <TextBlock Text="Название" Margin="0,5,5,5"/>
-                                        <TextBox Name="NameTextBox" Margin="5,5,0,5"/>
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" Margin="0,10">
-                                        <TextBlock Text="Местоположение" Margin="0,5,5,5"/>
-                                        <TextBox Name="PlaceTextBox" Margin="5,5,0,5"/>
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" Margin="0,10">
-                                        <TextBlock Text="Сколько уже проработал" Margin="0,5,5,5"/>
-                                        <TextBox Name="WorkTextBox" Margin="5,5,0,5"/>
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" Margin="0,10">
-                                        <TextBlock Text="Максимальная производительность в часах" Margin="0,5,5,5"/>
-                                        <TextBox Name="CapasityTextBox" Margin="5,5,0,5"/>
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" Margin="0,10">
-                                        <TextBlock Text="Состояние" Margin="0,5,5,5"/>
-                                        <ComboBox Name="StatusComboBox"/>
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" Margin="0,10">
-                                        <TextBlock Text="Дата последней проверки" Margin="0,5,5,5"/>
-                                        <DatePicker Name="LastDatePicker"/>
-                                </StackPanel>
-                                
-                                <StackPanel Orientation="Horizontal" Margin="0,10" HorizontalAlignment="Center">
-                                        <Button Margin="0,5,5,0" Name="SaveButton" Content="Сохранить" Click="SaveButton_OnClick"/>
-                                        <Button Margin="5,5,0,0" Name="BackButton" Content="Назад"  Click="BackButton_OnClick"/>
-                                        <Button Margin="5,5,0,0" Name="ChangeImage" Content="Изменить фотографию"  Click="SelectImageButton_Click"/>
-                                </StackPanel>
-                                <TextBlock Name="ErrorTextBlock" Margin="20,0,0,0"/>
-                        </StackPanel>
+        <Border Background="#FFF8F0"
+        BorderBrush="#E0C3A3"
+        BorderThickness="2"
+        CornerRadius="12"
+        Padding="20">
+
+    <StackPanel HorizontalAlignment="Center">
+
+        <TextBlock Name="TitleTextBlock"
+                   HorizontalAlignment="Center"
+                   FontSize="16"
+                   FontWeight="Bold"
+                   Margin="0,10"/>
+
+        <Border Background="#FFFDF8"
+                BorderBrush="#E0C3A3"
+                BorderThickness="1"
+                CornerRadius="10"
+                Padding="20"
+                Margin="0,20">
+
+            <StackPanel HorizontalAlignment="Center">
+
+                <StackPanel Orientation="Horizontal" Margin="0,10">
+                    <TextBlock Text="Название" Margin="0,5,5,5"/>
+                    <TextBox Name="NameTextBox" Margin="5,5,0,5" Width="180"/>
                 </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0,10">
+                    <TextBlock Text="Местоположение" Margin="0,5,5,5"/>
+                    <TextBox Name="PlaceTextBox" Margin="5,5,0,5" Width="180"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0,10">
+                    <TextBlock Text="Сколько уже проработал" Margin="0,5,5,5"/>
+                    <TextBox Name="WorkTextBox" Margin="5,5,0,5" Width="180"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0,10">
+                    <TextBlock Text="Максимальная производительность в часах" Margin="0,5,5,5"/>
+                    <TextBox Name="CapasityTextBox" Margin="5,5,0,5" Width="180"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0,10">
+                    <TextBlock Text="Состояние" Margin="0,5,5,5"/>
+                    <ComboBox Name="StatusComboBox"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0,10">
+                    <TextBlock Text="Дата последней проверки" Margin="0,5,5,5"/>
+                    <DatePicker Name="LastDatePicker"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal"
+                            Margin="0,15"
+                            HorizontalAlignment="Center">
+
+                    <Button Name="SaveButton"
+                            Content="Сохранить"
+                            Margin="0,5,5,0"
+                            Click="SaveButton_OnClick"/>
+
+                    <Button Name="BackButton"
+                            Content="Назад"
+                            Margin="5,5,0,0"
+                            Click="BackButton_OnClick"/>
+
+                    <Button Name="ChangeImage"
+                            Content="Изменить фотографию"
+                            Margin="5,5,0,0"
+                            Click="SelectImageButton_Click"/>
+                </StackPanel>
+
+                <TextBlock Name="ErrorTextBlock"
+                           Margin="10"
+                           Foreground="Red"/>
+
+            </StackPanel>
+
         </Border>
+
+    </StackPanel>
+
+</Border>
 </Window>

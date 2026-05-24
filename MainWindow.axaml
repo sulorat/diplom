@@ -5,20 +5,71 @@
         x:CompileBindings="False"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="diplom.MainWindow"
+        Icon="Assets/iconapp.ico"
         Title="diplom">
-        <DockPanel>
-                <StackPanel DockPanel.Dock="Top">
-                        <TextBlock Margin="0,20,0,20" HorizontalAlignment="Center"  Text="Авторизация"/>
-                        <TextBlock Text="Логин" HorizontalAlignment="Center" Margin="0,10"/>
-                        <TextBox Name="LogTextBox" HorizontalAlignment="Center" Margin="0,10" Width="150"/>
-                        <TextBlock Text="Пароль" HorizontalAlignment="Center" Margin="0,10"/>
-                        <TextBox Name="PassTextBox" HorizontalAlignment="Center" Margin="0,10" Width="150"/>
-                        <Button Content="Войти" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Margin="0,10" Click="LogButtonClick" Width="150"/>
-                        <TextBlock  HorizontalAlignment="Center" Name="ErrorTextBlock"/>
-                </StackPanel>
-                <StackPanel>
-                        <Button DockPanel.Dock="Bottom" HorizontalAlignment="Right" Margin="0,0,20,0" HorizontalContentAlignment="Center" Content="Войти как гость" Width="150" Click="GuestButtonClick"/>
-                        
-                </StackPanel>
-        </DockPanel>
+        <DockPanel Background="#FFF8F0">
+
+    <StackPanel DockPanel.Dock="Top" VerticalAlignment="Center">
+
+        <Border Background="#FFE4C4"
+                BorderBrush="#E0C3A3"
+                BorderThickness="0,0,0,2"
+                Padding="10">
+
+            <TextBlock Text="Авторизация"
+                       HorizontalAlignment="Center"
+                       FontSize="18"
+                       FontWeight="Bold"/>
+        </Border>
+
+        <Border Background="#FFFDF8"
+                BorderBrush="#E0C3A3"
+                BorderThickness="1"
+                CornerRadius="10"
+                Padding="20"
+                Margin="0,30,0,0"
+                HorizontalAlignment="Center">
+
+            <StackPanel Width="200">
+
+                <TextBlock Text="Логин" HorizontalAlignment="Center" Margin="0,10"/>
+                <TextBox Name="LogTextBox"
+                         HorizontalAlignment="Center"
+                         Margin="0,5"
+                         Width="150"
+                         Background="#FFF8F0"/>
+
+                <TextBlock Text="Пароль" HorizontalAlignment="Center" Margin="0,10"/>
+                <TextBox Name="PassTextBox"
+                         HorizontalAlignment="Center"
+                         Margin="0,5"
+                         Width="150"
+                         Background="#FFF8F0"/>
+
+                <Button Content="Войти"
+                        HorizontalAlignment="Center"
+                        Margin="0,15"
+                        Width="150"
+                        Click="LogButtonClick"/>
+
+                <TextBlock Name="ErrorTextBlock"
+                           HorizontalAlignment="Center"
+                           Foreground="#D98C6B"
+                           Margin="0,5"/>
+
+            </StackPanel>
+
+        </Border>
+
+    </StackPanel>
+
+    <StackPanel DockPanel.Dock="Bottom">
+        <Button Content="Войти как гость"
+                Width="150"
+                HorizontalAlignment="Right"
+                Margin="0,0,20,20"
+                Click="GuestButtonClick"/>
+    </StackPanel>
+
+</DockPanel>
 </Window>

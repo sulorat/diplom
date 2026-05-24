@@ -83,7 +83,7 @@ public partial class MovementWindow : Window
                     dbcontext.SaveChanges();
                     break;
                 case 2:
-                    if (FromDatePicker.SelectedDate < ToDatePicker.SelectedDate)
+                    if (FromDatePicker.SelectedDate > ToDatePicker.SelectedDate)
                     {
                         var messageBox = MessageBoxManager.GetMessageBoxStandard("Ошибка", "Заполните даты корректно");
                         await messageBox.ShowAsync();

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using Avalonia;
 using Avalonia.Controls;
@@ -16,7 +17,21 @@ public partial class HistoryEquipWindow : Window
 {
     public class HistoryEquipPresenter :Equipment
     {
-        public Bitmap? ImagePath { get; set; }
+        public string? EquipImagePath
+        {
+            get => Imagepath;
+        }
+
+        public Bitmap? Image
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(Imagepath) || !File.Exists(Imagepath))
+                    return null;
+
+                return new Bitmap(Imagepath);
+            }
+        }
         public string EquipName
         {
             get => string.Format("Название: {0}",Name);
@@ -61,6 +76,7 @@ public partial class HistoryEquipWindow : Window
                 new HistoryEquipPresenter()
                 {
                     Name = e.Name,
+                    Imagepath = e.Imagepath,
                     Status = e.Status,
                     StatusId = e.StatusId,
                     Place = e.Place,    

@@ -4,31 +4,74 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="diplom.AddRequestsWindow"
+        Icon="Assets/iconapp.ico"
         Title="AddRequestsWindow">
+        <StackPanel Background="#FFF8F0"
+            HorizontalAlignment="Center">
+
+    <TextBlock Text="Окно добавления заявок"
+               Margin="0,30,0,10"
+               FontSize="16"
+               FontWeight="Bold"/>
+
+    <Border Background="#FFFDF8"
+            BorderBrush="#E0C3A3"
+            BorderThickness="1"
+            CornerRadius="12"
+            Padding="20"
+            Margin="0,20">
+
         <StackPanel HorizontalAlignment="Center">
-                <TextBlock Margin="0,30,0,10" Text="Окно добавления заявок"/>
-                <StackPanel Margin="0,25" HorizontalAlignment="Center">
-                    <StackPanel Orientation="Horizontal" Margin="0,10">
-                        <TextBlock Text="Оборудование" Margin="0,5,5,5"/>
-                        <ComboBox Name="EquipComboBox"   Margin="5,5,0,5"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="0,10">
-                        <TextBlock Text="Описание проблемы" Margin="0,5,5,5"/>
-                        <TextBox Name="DescriptionTextBox" Margin="5,5,0,5"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="0,10">
-                        <TextBlock Text="Приоритет" Margin="0,5,5,5"/>
-                        <ComboBox Name="PriorityComboBox"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="0,10">
-                        <TextBlock Text="Статус заявки" Margin="0,5,5,5"/>
-                        <ComboBox Name="StatusComboBox"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" Margin="0,10" HorizontalAlignment="Center">
-                        <Button Margin="0,5,5,0" Name="SaveButton" Content="Сохранить" Click="SaveButton_OnClick"/>
-                        <Button Margin="5,5,0,0" Name="BackButton" Content="Назад"  Click="BackButton_OnClick"/>
-                    </StackPanel>
-                    <TextBlock Name="ErrorTextBlock" Margin="20,0,0,0"/>
-                </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,10">
+                <TextBlock Text="Оборудование"
+                           Margin="0,5,5,5"/>
+                <ComboBox Name="EquipComboBox"
+                          Margin="5,5,0,5"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,10">
+                <TextBlock Text="Описание проблемы"
+                           Margin="0,5,5,5"/>
+                <TextBox Name="DescriptionTextBox"
+                         Margin="5,5,0,5"
+                         Width="180"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,10">
+                <TextBlock Text="Приоритет"
+                           Margin="0,5,5,5"/>
+                <ComboBox Name="PriorityComboBox"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,10">
+                <TextBlock Text="Статус заявки"
+                           Margin="0,5,5,5"/>
+                <ComboBox Name="StatusComboBox"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal"
+                        Margin="0,15"
+                        HorizontalAlignment="Center">
+
+                <Button Name="SaveButton"
+                        Content="Сохранить"
+                        Margin="0,5,5,0"
+                        Click="SaveButton_OnClick"/>
+
+                <Button Name="BackButton"
+                        Content="Назад"
+                        Margin="5,5,0,0"
+                        Click="BackButton_OnClick"/>
+            </StackPanel>
+
+            <TextBlock Name="ErrorTextBlock"
+                       Margin="10"
+                       Foreground="Red"/>
+
         </StackPanel>
+
+    </Border>
+
+</StackPanel>
 </Window>

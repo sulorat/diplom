@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
+using Avalonia.Media.Imaging;
 using diplom.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,6 +17,21 @@ public partial class EventWindow : Window
 {
     public class EventPresenter: Event
     {
+        public string? EquipImagePath
+        {
+            get => this.Equipment.Imagepath;
+        }
+        public Bitmap? Image
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(Equipment.Imagepath) || !File.Exists(Equipment.Imagepath))
+                    return null;
+
+                return new Bitmap(Equipment.Imagepath);
+            }
+        }
+
         public string EventEquip
         {
             get => string.Format("Оборудование: {0}",Equipment?.Name ?? "");
@@ -66,8 +83,8 @@ public partial class EventWindow : Window
                     EventstatusId = e.EventstatusId
                 }).ToList();
 
-            var warning = dbcontext.Repairrequests.Where(e=>e.Isdeleted!=true).Any(e => e.Priority == 1);
-            if (warning != null)
+            var warning = dbcontext.Repairrequests.Any(e => e.Priority == 1 && e.Isdeleted!=true);
+            if (warning)
             {
                 WarningTextBlock.Text = "У вас срочная заявка на рассмотрение";
             }

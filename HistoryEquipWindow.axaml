@@ -5,35 +5,69 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:CompileBindings="False"
         x:Class="diplom.HistoryEquipWindow"
+        Icon="Assets/iconapp.ico"
         Title="HistoryEquipWindow">
-    <DockPanel>
-        <Border DockPanel.Dock="Top">
-            <StackPanel Orientation="Horizontal">
-                <Button Content="Вернуться" Margin="15" Name="BackButton" Click="BackButton_OnClick"/>
-                <TextBlock Text="Окно Истории оборудования" Margin="50,10,0,0"/>
-            </StackPanel>
-        </Border>
-        <Border>
-            <ListBox Name="HistoryListBox">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
+    <DockPanel Background="#FFF8F0">
+
+    <Border DockPanel.Dock="Top" Background="#FFE4C4" BorderBrush="#E0C3A3" BorderThickness="0,0,0,2">
+        <StackPanel Orientation="Horizontal">
+            <Button Content="Вернуться"
+                    Margin="15"
+                    Name="BackButton"
+                    Click="BackButton_OnClick"/>
+
+            <TextBlock Text="Окно Истории оборудования"
+                       Margin="50,10,0,0"
+                       FontSize="16"
+                       FontWeight="Bold"/>
+        </StackPanel>
+    </Border>
+
+    <Border Background="#FFF8F0" BorderBrush="#E0C3A3" BorderThickness="2">
+        <ListBox Name="HistoryListBox"
+                 Background="Transparent"
+                 BorderThickness="0">
+
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border Background="#FFFDF8"
+                            BorderBrush="#E0C3A3"
+                            BorderThickness="1"
+                            CornerRadius="10"
+                            Margin="10"
+                            Padding="10">
+
                         <StackPanel Orientation="Horizontal">
-                            <Image/>
-                            <StackPanel >
-                                <TextBlock Margin="5" Text="{Binding EquipName}" />
+
+                            <Image Source="{Binding Image}"
+                                   Width="150"
+                                   Height="100"
+                                   Margin="5"/>
+
+                            <StackPanel>
+                                <TextBlock Margin="5" Text="{Binding EquipName}" FontWeight="Bold"/>
                                 <TextBlock Margin="5" Text="{Binding EquipWorkHours}"/>
                                 <TextBlock Margin="5" Text="{Binding EquipCapasity}"/>
                             </StackPanel>
-                            <StackPanel >
-                                <TextBlock  Margin="5" Text="{Binding EquipDateOfLastCheck}"/>
-                                <TextBlock  Margin="5" Text="{Binding EquipDateOfLastCheckString}"/>
-                                <TextBlock  Margin="5" Text="{Binding EquipPlace}"/>
-                            </StackPanel >
-                            <TextBlock Text="{Binding EquipStatus}" Margin="5" />
+
+                            <StackPanel>
+                                <TextBlock Margin="5" Text="{Binding EquipDateOfLastCheck}"/>
+                                <TextBlock Margin="5" Text="{Binding EquipDateOfLastCheckString}"/>
+                                <TextBlock Margin="5" Text="{Binding EquipPlace}"/>
+                            </StackPanel>
+
+                            <TextBlock Text="{Binding EquipStatus}"
+                                       Margin="10"
+                                       VerticalAlignment="Center"/>
+
                         </StackPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-        </Border>
-    </DockPanel>
+
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+
+        </ListBox>
+    </Border>
+
+</DockPanel>
 </Window>
