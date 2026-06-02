@@ -37,15 +37,15 @@ public partial class DiplomContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseNpgsql("Host = localhost; database = diplom; username=postgres; port = 5432; password = 12312311Da");
+        => optionsBuilder.UseNpgsql("Host = 2.26.8.167; database = postgres; username = sasha; password = L1Jj9wYngP; port = 5454");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Equipment>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("equipments_pkey");
-
-            entity.ToTable("equipments");
+                
+            entity.ToTable("equipments", "dimka");
 
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Dateoflastcheck).HasColumnName("dateoflastcheck");
@@ -73,7 +73,7 @@ public partial class DiplomContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("equipmentmovement_pkey");
 
-            entity.ToTable("equipmentmovement");
+            entity.ToTable("equipmentmovement", "dimka");
 
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.EquipmentId).HasColumnName("equipment_id");
@@ -108,7 +108,7 @@ public partial class DiplomContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("events_pkey");
 
-            entity.ToTable("events");
+            entity.ToTable("events", "dimka");
 
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Dateof).HasColumnName("dateof");
@@ -132,7 +132,7 @@ public partial class DiplomContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("eventstatus_pkey");
 
-            entity.ToTable("eventstatus");
+            entity.ToTable("eventstatus", "dimka");
 
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Description)
@@ -147,7 +147,7 @@ public partial class DiplomContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("movementtypes_pkey");
 
-            entity.ToTable("movementtypes");
+            entity.ToTable("movementtypes", "dimka");
 
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Name)
@@ -159,7 +159,7 @@ public partial class DiplomContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("priorities_pkey");
 
-            entity.ToTable("priorities");
+            entity.ToTable("priorities", "dimka");
 
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Name)
@@ -171,7 +171,7 @@ public partial class DiplomContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("repairrequests_pkey");
 
-            entity.ToTable("repairrequests");
+            entity.ToTable("repairrequests", "dimka");
 
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Createdat).HasColumnName("createdat");
@@ -200,7 +200,7 @@ public partial class DiplomContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("requeststatuses_pkey");
 
-            entity.ToTable("requeststatuses");
+            entity.ToTable("requeststatuses", "dimka");
 
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Name)
@@ -212,7 +212,7 @@ public partial class DiplomContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("staff_pkey");
 
-            entity.ToTable("staff");
+            entity.ToTable("staff", "dimka");
 
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Login)
@@ -233,7 +233,7 @@ public partial class DiplomContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("status_pkey");
 
-            entity.ToTable("status");
+            entity.ToTable("status", "dimka");
 
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Name)

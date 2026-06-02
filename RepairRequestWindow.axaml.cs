@@ -159,7 +159,6 @@ public partial class RepairRequestWindow : Window
            _event.Description = _selectedItem.Description;
            _event.EquipmentId = _selectedItem.EquipmentId;
            _event.EventstatusId = 2;
-           _event.Id = dbcontext.Events.Max(e=>e.Id)+1;
            _event.Dateof = _selectedItem.Createdat?? DateOnly.FromDateTime(DateTime.Now);
            var repair = dbcontext.Repairrequests.FirstOrDefault(e => e.Id == _selectedItem.Id);
            if (repair != null)
